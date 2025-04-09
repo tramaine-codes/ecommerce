@@ -15,7 +15,7 @@
     "constructs": "10.4.2",
     "effect": "3.14.6",
     "envalid": "8.0.0",
-    "fast-check": "4.1.0",
+    "fast-check": "4.1.1",
     "nanoid": "5.1.5",
     "openid-client": "6.4.1",
     "pkg-dir": "8.0.0",
