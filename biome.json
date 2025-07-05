@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
@@ -8,33 +8,47 @@
     "lineEnding": "lf",
     "lineWidth": 80,
     "attributePosition": "auto",
-    "ignore": [
-      "./cdk.out",
-      "./coverage",
-      "./dist",
-      "./.husky",
-      "./node_modules",
-      "./tmp",
-      "**/package-lock.json"
+    "includes": [
+      "**",
+      "!cdk.out",
+      "!coverage",
+      "!dist",
+      "!.husky",
+      "!node_modules",
+      "!tmp",
+      "!**/package-lock.json"
     ]
   },
-  "organizeImports": { "enabled": true },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
       "suspicious": {
-        "noConsoleLog": "warn"
+        "noConsole": { "level": "warn", "options": { "allow": ["log"] } }
+      },
+      "style": {
+        "noParameterAssign": "error",
+        "useAsConstAssertion": "error",
+        "useDefaultParameterLast": "error",
+        "useEnumInitializers": "error",
+        "useSelfClosingElements": "error",
+        "useSingleVarDeclarator": "error",
+        "noUnusedTemplateLiteral": "error",
+        "useNumberNamespace": "error",
+        "noInferrableTypes": "error",
+        "noUselessElse": "error"
       }
     },
-    "ignore": [
-      "./cdk.out",
-      "./coverage",
-      "./dist",
-      "./.husky",
-      "./node_modules",
-      "./tmp",
-      "**/package-lock.json"
+    "includes": [
+      "**",
+      "!cdk.out",
+      "!coverage",
+      "!dist",
+      "!.husky",
+      "!node_modules",
+      "!tmp",
+      "!**/package-lock.json"
     ]
   },
   "javascript": {

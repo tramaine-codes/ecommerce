@@ -128,6 +128,9 @@ exports[`matches the snapshot 1`] = `
         "RestApiproductsPOST6AB87446",
         "RestApiproducts287512B0",
       ],
+      "Metadata": {
+        "aws:cdk:do-not-refactor": true,
+      },
       "Properties": {
         "Description": "Automatically created by the RestApi construct",
         "RestApiId": {
@@ -167,7 +170,7 @@ exports[`matches the snapshot 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "da31b82ef8e643ba055607cbd58ff45d16d6ebab1bb6760888c042545a112a6b.zip",
+          "S3Key": "bc79b392202436350916eba003b4927645497c1100f4de653080917018217c4d.zip",
         },
         "Environment": {
           "Variables": {
