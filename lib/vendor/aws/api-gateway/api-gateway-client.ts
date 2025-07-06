@@ -1,12 +1,11 @@
 import {
   APIGatewayClient,
-  type RestApi,
   paginateGetRestApis,
+  type RestApi,
 } from '@aws-sdk/client-api-gateway';
 import { Array as Arr, Context, Effect, Layer, Match, Stream } from 'effect';
 import { NoSuchElementException, UnknownException } from 'effect/Cause';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class ApiGatewayClient extends Context.Tag('ApiGatewayClient')<
   ApiGatewayClient,
   {
@@ -15,9 +14,7 @@ export class ApiGatewayClient extends Context.Tag('ApiGatewayClient')<
     ): Effect.Effect<RestApi, NoSuchElementException | UnknownException>;
   }
 >() {
-  static build() {
-    return ApiGatewayClientLive;
-  }
+  static build = () => ApiGatewayClientLive;
 }
 
 class Client {
@@ -51,7 +48,7 @@ class Client {
       ),
       (e) => new UnknownException(e)
     ).pipe(
-      Stream.runFold(new Array<RestApi>(), (allRestApis, { items }) =>
+      Stream.runFold([] as RestApi[], (allRestApis, { items }) =>
         Match.value(items).pipe(
           Match.when(Match.undefined, () => allRestApis),
           Match.orElse((restApis) => [...allRestApis, ...restApis])

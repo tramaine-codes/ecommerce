@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import type * as cognito from 'aws-cdk-lib/aws-cognito';
 import type { Construct } from 'constructs';
-import type { Config } from '../infrastructure/config/config.js';
+import type { Config } from '../../infrastructure/config/config.js';
 import { ApiUserPool } from './pools/api-user-pool.js';
 
 interface AuthStackProps extends cdk.StackProps {

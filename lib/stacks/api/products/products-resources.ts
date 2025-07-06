@@ -3,7 +3,7 @@ import type * as dynamo from 'aws-cdk-lib/aws-dynamodb';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as nodejs from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Construct } from 'constructs';
-import { Package } from '../../vendor/pkg/package.js';
+import { Package } from '../../../vendor/pkg/package.js';
 
 interface ProductsResourcesProps {
   readonly api: apigw.RestApi;

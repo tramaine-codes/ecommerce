@@ -1,5 +1,5 @@
 import type { APIGatewayProxyResult } from 'aws-lambda';
-import { Context, Effect, Layer, Match, flow } from 'effect';
+import { Context, Effect, flow, Layer, Match } from 'effect';
 import { RequestContext } from '../../common/request/request-context.js';
 import type { RequestParams } from '../../common/request/request-params.js';
 import { Response } from '../../common/response/response.js';
@@ -7,19 +7,17 @@ import { OpFactory } from '../application/operation/op-factory.js';
 import { Operation } from '../application/operation/operation.js';
 import { Probe } from '../application/probe/probe.js';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class Api extends Context.Tag('Api')<
   Api,
   {
     handler: (params: RequestParams) => Effect.Effect<APIGatewayProxyResult>;
   }
 >() {
-  static from(params: RequestParams) {
-    return ApiLive.pipe(
+  static from = (params: RequestParams) =>
+    ApiLive.pipe(
       Layer.provide(OpFactory.from(params)),
       Layer.provide(Probe.build())
     );
-  }
 }
 
 const ApiLive = Layer.effect(

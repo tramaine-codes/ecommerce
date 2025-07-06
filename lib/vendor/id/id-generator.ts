@@ -1,11 +1,7 @@
 import { nanoid } from 'nanoid';
 
 export class IdGenerator {
-  private generate() {
-    return nanoid();
-  }
+  private generate = () => nanoid();
 
-  static generate() {
-    return new IdGenerator().generate();
-  }
+  static generate = () => new IdGenerator().generate();
 }

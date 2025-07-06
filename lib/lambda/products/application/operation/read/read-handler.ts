@@ -11,14 +11,12 @@ export interface ReadArgs {
   readonly productId: string;
 }
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class ReadHandler extends Context.Tag('Handler')<
   ReadHandler,
   Handler
 >() {
-  static build() {
-    return ReadHandlerLive.pipe(Layer.provide(ProductService.build()));
-  }
+  static build = () =>
+    ReadHandlerLive.pipe(Layer.provide(ProductService.build()));
 }
 
 export const ReadHandlerLive = Layer.effect(

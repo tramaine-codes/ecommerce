@@ -2,7 +2,6 @@ import { Context, Effect, Layer } from 'effect';
 import { NoSuchElementException, type UnknownException } from 'effect/Cause';
 import { CognitoClient } from '../../vendor/aws/cognito/cognito-client.js';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class CognitoGateway extends Context.Tag('CognitoGateway')<
   CognitoGateway,
   {

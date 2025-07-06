@@ -2,7 +2,6 @@ import { Context, Effect, Layer } from 'effect';
 import { NoSuchElementException, type UnknownException } from 'effect/Cause';
 import { ApiGatewayClient } from '../../vendor/aws/api-gateway/api-gateway-client.js';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class ApiGateway extends Context.Tag('ApiGateway')<
   ApiGateway,
   {
@@ -11,9 +10,8 @@ export class ApiGateway extends Context.Tag('ApiGateway')<
     ): Effect.Effect<string, NoSuchElementException | UnknownException>;
   }
 >() {
-  static build() {
-    return ApiGatewayLive.pipe(Layer.provide(ApiGatewayClient.build()));
-  }
+  static build = () =>
+    ApiGatewayLive.pipe(Layer.provide(ApiGatewayClient.build()));
 }
 
 export const ApiGatewayLive = Layer.effect(

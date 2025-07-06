@@ -1,5 +1,5 @@
 import * as cognito from 'aws-cdk-lib/aws-cognito';
-import type { Config } from '../../../infrastructure/config/config.js';
+import type { Config } from '../../../../infrastructure/config/config.js';
 
 interface PoolDomainProps {
   readonly config: Config;

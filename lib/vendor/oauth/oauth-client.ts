@@ -12,9 +12,7 @@ export class OAuthClient extends Context.Tag('OAuthClient')<
     ): Effect.Effect<string, UnknownException>;
   }
 >() {
-  static build() {
-    return OAuthClientLive;
-  }
+  static build = () => OAuthClientLive;
 }
 
 export const OAuthClientLive = Layer.succeed(OAuthClient, {

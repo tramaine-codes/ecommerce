@@ -12,9 +12,8 @@ export class OAuthGateway extends Context.Tag('OAuthGateway')<
     ): Effect.Effect<string, UnknownException>;
   }
 >() {
-  static build() {
-    return OAuthGatewayLive.pipe(Layer.provide(OAuthClient.build()));
-  }
+  static build = () =>
+    OAuthGatewayLive.pipe(Layer.provide(OAuthClient.build()));
 }
 
 export const OAuthGatewayLive = Layer.effect(

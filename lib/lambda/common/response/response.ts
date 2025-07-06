@@ -8,48 +8,48 @@ interface ResponseDetails {
 export class Response {
   constructor(private readonly details: ResponseDetails) {}
 
-  private produce(): APIGatewayProxyResult {
+  private produce = (): APIGatewayProxyResult => {
     const { body, statusCode } = this.details;
 
     return {
       body,
       statusCode,
     };
-  }
+  };
 
-  static ok(requestId: string, data: Record<string, unknown>) {
-    const details = {
+  static ok = (requestId: string, data: Record<string, unknown>) => {
+    const details: ResponseDetails = {
       body: JSON.stringify({ requestId, message: 'OK', ...data }),
       statusCode: 200,
-    } satisfies ResponseDetails;
+    };
 
     return new Response(details).produce();
-  }
+  };
 
-  static badRequest(requestId: string, data: Record<string, unknown>) {
-    const details = {
+  static badRequest = (requestId: string, data: Record<string, unknown>) => {
+    const details: ResponseDetails = {
       body: JSON.stringify({ requestId, message: 'Bad Request', ...data }),
       statusCode: 400,
-    } satisfies ResponseDetails;
+    };
 
     return new Response(details).produce();
-  }
+  };
 
-  static notFound(requestId: string) {
-    const details = {
+  static notFound = (requestId: string) => {
+    const details: ResponseDetails = {
       body: JSON.stringify({ requestId, message: 'Not Found' }),
       statusCode: 404,
-    } satisfies ResponseDetails;
+    };
 
     return new Response(details).produce();
-  }
+  };
 
-  static serverError(requestId: string) {
-    const details = {
+  static serverError = (requestId: string) => {
+    const details: ResponseDetails = {
       body: JSON.stringify({ requestId, message: 'Internal Server Error' }),
       statusCode: 500,
-    } satisfies ResponseDetails;
+    };
 
     return new Response(details).produce();
-  }
+  };
 }

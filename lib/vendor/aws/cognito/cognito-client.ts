@@ -1,16 +1,15 @@
 import {
   CognitoIdentityProviderClient,
   DescribeUserPoolClientCommand,
+  paginateListUserPoolClients,
+  paginateListUserPools,
   type UserPoolClientDescription,
   type UserPoolClientType,
   type UserPoolDescriptionType,
-  paginateListUserPoolClients,
-  paginateListUserPools,
 } from '@aws-sdk/client-cognito-identity-provider';
 import { Array as Arr, Context, Effect, Layer, Match, Stream } from 'effect';
 import { NoSuchElementException, UnknownException } from 'effect/Cause';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class CognitoClient extends Context.Tag('CognitoClient')<
   CognitoClient,
   {
@@ -36,9 +35,7 @@ export class CognitoClient extends Context.Tag('CognitoClient')<
     >;
   }
 >() {
-  static build() {
-    return CognitoClientLive;
-  }
+  static build = () => CognitoClientLive;
 }
 
 class Client {
@@ -112,7 +109,7 @@ class Client {
       (e) => new UnknownException(e)
     ).pipe(
       Stream.runFold(
-        new Array<UserPoolDescriptionType>(),
+        [] as UserPoolDescriptionType[],
         (allUserPools, { UserPools }) =>
           Match.value(UserPools).pipe(
             Match.when(Match.undefined, () => allUserPools),
@@ -136,7 +133,7 @@ class Client {
       (e) => new UnknownException(e)
     ).pipe(
       Stream.runFold(
-        new Array<UserPoolClientDescription>(),
+        [] as UserPoolClientDescription[],
         (allUserPoolClients, { UserPoolClients }) =>
           Match.value(UserPoolClients).pipe(
             Match.when(Match.undefined, () => allUserPoolClients),

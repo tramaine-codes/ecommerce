@@ -1,9 +1,5 @@
 export class Time {
-  private now() {
-    return new Date();
-  }
+  private now = () => new Date();
 
-  static now() {
-    return new Time().now();
-  }
+  static now = () => new Time().now();
 }

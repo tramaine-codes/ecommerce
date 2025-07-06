@@ -1,14 +1,10 @@
 import * as cdk from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { expect, test } from 'vitest';
-import { AuthStack } from '../../../lib/auth/auth-stack.js';
-import { Config } from '../../../lib/infrastructure/config/config.js';
+import { DynamoStack } from '../../../../lib/stacks/dynamo/dynamo-stack.js';
 
 const app = new cdk.App();
-const config = new Config();
-const stack = new AuthStack(app, 'AuthStack', {
-  config,
-});
+const stack = new DynamoStack(app, 'DynamoStack');
 
 const template = Template.fromStack(stack);
 

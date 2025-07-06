@@ -9,14 +9,11 @@ import { ProductEvent } from '../../event/product-event.js';
 import { Probe } from '../../probe/probe.js';
 import type { Validator } from '../operation.js';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class CreateValidator extends Context.Tag('CreateValidator')<
   CreateValidator,
   Validator
 >() {
-  static build() {
-    return CreateValidatorLive;
-  }
+  static build = () => CreateValidatorLive;
 }
 
 export const CreateValidatorLive = Layer.effect(

@@ -10,7 +10,6 @@ import { Context, Effect, Layer } from 'effect';
 import type { UnknownException } from 'effect/Cause';
 import { Time } from '../../../../vendor/type/time.js';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class DynamoClient extends Context.Tag('DynamoClient')<
   DynamoClient,
   {
@@ -24,9 +23,7 @@ export class DynamoClient extends Context.Tag('DynamoClient')<
     ): Effect.Effect<PutCommandOutput, UnknownException>;
   }
 >() {
-  static build() {
-    return DynamoClientLive;
-  }
+  static build = () => DynamoClientLive;
 }
 
 export const DynamoClientLive = Layer.sync(DynamoClient, () => {

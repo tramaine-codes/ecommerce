@@ -5,13 +5,12 @@ import { Operation } from '../operation.js';
 import { CreateHandler } from './create-handler.js';
 import { CreateValidator } from './create-validator.js';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
+// biome-ignore lint/complexity/noStaticOnlyClass: overriding rule
 export class CreateOperation {
-  static build() {
-    return CreateOperationLive.pipe(
+  static build = () =>
+    CreateOperationLive.pipe(
       Layer.provide(Layer.merge(CreateValidator.build(), CreateHandler.build()))
     );
-  }
 }
 
 export const CreateOperationLive = Layer.effect(

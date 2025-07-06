@@ -2,7 +2,7 @@ import * as cdk from 'aws-cdk-lib';
 import type * as cognito from 'aws-cdk-lib/aws-cognito';
 import type * as dynamo from 'aws-cdk-lib/aws-dynamodb';
 import type { Construct } from 'constructs';
-import type { Config } from '../infrastructure/config/config.js';
+import type { Config } from '../../infrastructure/config/config.js';
 import { RestApi } from './api-gateway/rest-api.js';
 
 interface ApiStackProps extends cdk.StackProps {

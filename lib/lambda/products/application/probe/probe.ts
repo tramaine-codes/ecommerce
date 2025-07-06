@@ -4,7 +4,6 @@ import type { NotFoundError } from '../../../common/application/error/not-found-
 import type { ValidationError } from '../../../common/application/error/validation-error.js';
 import { AppLogger } from '../../infrastructure/logging/app-logger.js';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class Probe extends Context.Tag('Probe')<
   Probe,
   {
@@ -20,9 +19,7 @@ export class Probe extends Context.Tag('Probe')<
     ): Effect.Effect<void>;
   }
 >() {
-  static build() {
-    return ProbeLive.pipe(Layer.provide(AppLogger.build()));
-  }
+  static build = () => ProbeLive.pipe(Layer.provide(AppLogger.build()));
 }
 
 const ProbeLive = Layer.effect(

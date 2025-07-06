@@ -1,7 +1,6 @@
 import { Context, Effect, HashMap, Inspectable, Layer, Logger } from 'effect';
 import { IdGenerator } from '../../../../vendor/id/id-generator.js';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class AppLogger extends Context.Tag('AppLogger')<
   AppLogger,
   {
@@ -9,11 +8,10 @@ export class AppLogger extends Context.Tag('AppLogger')<
     info: (message: string) => Effect.Effect<void>;
   }
 >() {
-  static build() {
-    return AppLoggerLive.pipe(
+  static build = () =>
+    AppLoggerLive.pipe(
       Layer.provide(Logger.replace(Logger.defaultLogger, jsonLogger()))
     );
-  }
 }
 
 const AppLoggerLive = Layer.succeed(AppLogger, {
@@ -24,7 +22,6 @@ const AppLoggerLive = Layer.succeed(AppLogger, {
 const jsonLogger = () =>
   Logger.make(
     ({ date, logLevel: { label: _logLevel }, message: msg, annotations }) => {
-      // biome-ignore lint/suspicious/noConsoleLog: <explanation>
       globalThis.console.log(
         Inspectable.stringifyCircular({
           ...Object.fromEntries(HashMap.toEntries(annotations)),

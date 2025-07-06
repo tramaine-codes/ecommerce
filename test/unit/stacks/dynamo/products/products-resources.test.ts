@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { test } from 'vitest';
-import { ProductsResources } from '../../../../lib/dynamo/products/products-resources.js';
+import { ProductsResources } from '../../../../../lib/stacks/dynamo/products/products-resources.js';
 
 const stack = new cdk.Stack(new cdk.App());
 

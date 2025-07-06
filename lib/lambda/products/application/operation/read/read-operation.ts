@@ -5,13 +5,12 @@ import { Operation } from '../operation.js';
 import { ReadHandler } from './read-handler.js';
 import { ReadValidator } from './read-validator.js';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
+// biome-ignore lint/complexity/noStaticOnlyClass: overriding rule
 export class ReadOperation {
-  static build() {
-    return ReadOperationLive.pipe(
+  static build = () =>
+    ReadOperationLive.pipe(
       Layer.provide(Layer.merge(ReadValidator.build(), ReadHandler.build()))
     );
-  }
 }
 
 export const ReadOperationLive = Layer.effect(

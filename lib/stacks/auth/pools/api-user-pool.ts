@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as cognito from 'aws-cdk-lib/aws-cognito';
 import type { Construct } from 'constructs';
-import type { Config } from '../../infrastructure/config/config.js';
+import type { Config } from '../../../infrastructure/config/config.js';
 import { TestPoolClient } from '../clients/test-pool-client.js';
 import { ResourceServer } from '../resource-servers/resource-server.js';
 import { PoolDomain } from './domains/pool-domain.js';

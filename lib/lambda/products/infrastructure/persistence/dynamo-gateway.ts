@@ -6,7 +6,6 @@ import { DynamoClient } from '../../../common/vendor/dynamo/dynamo-client.js';
 import { ProductDto } from '../../domain/dto/product-dto.js';
 import { ProductMapper, ProductMapperLive } from './product-mapper.js';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class DynamoGateway extends Context.Tag('DynamoGateway')<
   DynamoGateway,
   {
@@ -16,11 +15,10 @@ export class DynamoGateway extends Context.Tag('DynamoGateway')<
     create: (product: ProductDto) => Effect.Effect<void, UnknownException>;
   }
 >() {
-  static build() {
-    return DynamoGatewayLive.pipe(
+  static build = () =>
+    DynamoGatewayLive.pipe(
       Layer.provide(Layer.merge(DynamoClient.build(), ProductMapperLive))
     );
-  }
 }
 
 export const DynamoGatewayLive = Layer.effect(

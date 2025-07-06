@@ -9,7 +9,6 @@ import type { CreateArgs } from '../operation/create/create-handler.js';
 import type { ReadArgs } from '../operation/read/read-handler.js';
 import { Probe } from '../probe/probe.js';
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class ProductService extends Context.Tag('ProductService')<
   ProductService,
   {
@@ -19,9 +18,8 @@ export class ProductService extends Context.Tag('ProductService')<
     ) => Effect.Effect<ProductDto, NotFoundError | UnknownException>;
   }
 >() {
-  static build() {
-    return ProductServiceLive.pipe(Layer.provide(DynamoGateway.build()));
-  }
+  static build = () =>
+    ProductServiceLive.pipe(Layer.provide(DynamoGateway.build()));
 }
 
 export const ProductServiceLive = Layer.effect(

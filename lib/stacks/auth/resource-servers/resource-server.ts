@@ -1,5 +1,5 @@
 import * as cognito from 'aws-cdk-lib/aws-cognito';
-import type { Config } from '../../infrastructure/config/config.js';
+import type { Config } from '../../../infrastructure/config/config.js';
 import { ReadScope } from './scopes/read-scope.js';
 import { WriteScope } from './scopes/write-scope.js';
 

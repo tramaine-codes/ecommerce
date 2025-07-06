@@ -10,14 +10,12 @@ export interface CreateArgs {
   readonly product: Product;
 }
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class CreateHandler extends Context.Tag('Handler')<
   CreateHandler,
   Handler
 >() {
-  static build() {
-    return CreateHandlerLive.pipe(Layer.provide(ProductService.build()));
-  }
+  static build = () =>
+    CreateHandlerLive.pipe(Layer.provide(ProductService.build()));
 }
 
 export const CreateHandlerLive = Layer.effect(
