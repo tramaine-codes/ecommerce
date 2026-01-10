@@ -170,7 +170,7 @@ exports[`matches the snapshot 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "2c78f8cea006a350d3b42d34633cf559eaa400b4ed61ca22f3183cf9e97f08bf.zip",
+          "S3Key": "457751822a7fa97e7cc7d4ef235a0fe9d97d2a22159f97304e430685b4e9d4a6.zip",
         },
         "Environment": {
           "Variables": {
@@ -186,7 +186,7 @@ exports[`matches the snapshot 1`] = `
             "Arn",
           ],
         },
-        "Runtime": "nodejs20.x",
+        "Runtime": "nodejs24.x",
         "Tags": [
           {
             "Key": "Name",
@@ -240,8 +240,6 @@ exports[`matches the snapshot 1`] = `
             {
               "Action": [
                 "dynamodb:BatchGetItem",
-                "dynamodb:GetRecords",
-                "dynamodb:GetShardIterator",
                 "dynamodb:Query",
                 "dynamodb:GetItem",
                 "dynamodb:Scan",
@@ -251,6 +249,29 @@ exports[`matches the snapshot 1`] = `
                 "dynamodb:UpdateItem",
                 "dynamodb:DeleteItem",
                 "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::ImportValue": "DynamoStack:ExportsOutputFnGetAttProductsResourcesProductsTable5E5C5448Arn76B6C8C1",
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::ImportValue": "DynamoStack:ExportsOutputFnGetAttProductsResourcesProductsTable5E5C5448Arn76B6C8C1",
+                      },
+                      "/index/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
               ],
               "Effect": "Allow",
               "Resource": [

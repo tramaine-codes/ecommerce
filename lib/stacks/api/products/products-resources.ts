@@ -24,7 +24,7 @@ export class ProductsResouces extends Construct {
         PRODUCTS_TABLE_NAME: productsTable.tableName,
       },
       handler: 'index.handler',
-      runtime: lambda.Runtime.NODEJS_20_X,
+      runtime: lambda.Runtime.NODEJS_24_X,
     });
     const integration = new apigw.LambdaIntegration(handler);
 
