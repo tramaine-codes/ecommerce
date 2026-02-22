@@ -8,7 +8,7 @@ import { Package } from '../../../vendor/pkg/package.js';
 interface ProductsResourcesProps {
   readonly api: apigw.RestApi;
   readonly authorizer: apigw.IAuthorizer;
-  readonly productsTable: dynamo.ITableV2;
+  readonly productsTable: dynamo.TableV2;
 }
 
 export class ProductsResouces extends Construct {

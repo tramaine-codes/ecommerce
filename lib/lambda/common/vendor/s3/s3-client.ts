@@ -9,7 +9,7 @@ import {
   type SelectObjectContentCommandOutput,
   type SelectObjectContentEventStream,
 } from '@aws-sdk/client-s3';
-import { Chunk, Effect, Either, Match, Option, Sink, Stream } from 'effect';
+import { Chunk, Effect, Either, Match, Option, Stream } from 'effect';
 
 export class Client {
   private readonly client = new S3Client();
@@ -55,15 +55,13 @@ export class Client {
       );
 
       return stream.pipe(
-        Stream.run(
-          Sink.foldLeft(Chunk.make(new Uint8Array()), (chunks, chunk) =>
-            Option.fromNullable(chunk.Records).pipe(
-              Option.flatMapNullable(({ Payload }) => Payload),
-              Option.match({
-                onNone: () => chunks,
-                onSome: (chunk) => chunks.pipe(Chunk.append(chunk)),
-              })
-            )
+        Stream.runFold(Chunk.empty<Uint8Array>(), (chunks, chunk) =>
+          Option.fromNullable(chunk.Records).pipe(
+            Option.flatMapNullable(({ Payload }) => Payload),
+            Option.match({
+              onNone: () => chunks,
+              onSome: (chunk) => chunks.pipe(Chunk.append(chunk)),
+            })
           )
         ),
         Effect.andThen((chunks) =>

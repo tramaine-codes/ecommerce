@@ -10,7 +10,7 @@ import { ProductsResouces } from '../products/products-resources.js';
 interface RestApiProps {
   readonly cognitoUserPools: cognito.IUserPool[];
   readonly config: Config;
-  readonly productsTable: dynamo.ITableV2;
+  readonly productsTable: dynamo.TableV2;
 }
 
 export class RestApi extends apigw.RestApi {

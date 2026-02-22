@@ -4,7 +4,7 @@ import type { Construct } from 'constructs';
 import { ProductsResources } from './products/products-resources.js';
 
 export class DynamoStack extends cdk.Stack {
-  readonly productsTable: dynamodb.ITableV2;
+  readonly productsTable: dynamodb.TableV2;
 
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);

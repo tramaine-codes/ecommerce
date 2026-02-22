@@ -1,11 +1,11 @@
 import { Effect } from 'effect';
-import type { GlobalSetupContext } from 'vitest/node';
+import type { TestProject } from 'vitest/node';
 import { ApiGateway } from '../../lib/infrastructure/api-gateway/api-gateway.js';
 import { CognitoGateway } from '../../lib/infrastructure/cognito/cognito-gateway.js';
 import { Config } from '../../lib/infrastructure/config/config.js';
 import { OAuthGateway } from '../../lib/infrastructure/oauth/oauth-gateway.js';
 
-export default async function setup({ provide }: GlobalSetupContext) {
+export default async function setup(project: TestProject) {
   const {
     settings: {
       api: { name: apiName },
@@ -29,8 +29,8 @@ export default async function setup({ provide }: GlobalSetupContext) {
     );
     const apiId = yield* apiGateway.apiId(apiName);
 
-    provide('accessToken', accessToken);
-    provide(
+    project.provide('accessToken', accessToken);
+    project.provide(
       'apiBaseUrl',
       `https://${apiId}.execute-api.${region}.amazonaws.com/prod`
     );

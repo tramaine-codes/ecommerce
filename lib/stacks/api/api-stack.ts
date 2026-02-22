@@ -8,7 +8,7 @@ import { RestApi } from './api-gateway/rest-api.js';
 interface ApiStackProps extends cdk.StackProps {
   readonly cognitoUserPools: cognito.IUserPool[];
   readonly config: Config;
-  readonly productsTable: dynamo.ITableV2;
+  readonly productsTable: dynamo.TableV2;
 }
 
 export class ApiStack extends cdk.Stack {

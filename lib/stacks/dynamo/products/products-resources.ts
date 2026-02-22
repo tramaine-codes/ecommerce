@@ -3,7 +3,7 @@ import { Construct } from 'constructs';
 import { ProductsTable } from './products-table.js';
 
 export class ProductsResources extends Construct {
-  readonly productsTable: dynamodb.ITableV2;
+  readonly productsTable: dynamodb.TableV2;
 
   constructor(scope: Construct) {
     super(scope, 'ProductsResources');
